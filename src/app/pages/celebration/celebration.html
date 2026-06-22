@@ -94,13 +94,13 @@
 
   <!-- Two photos on the left of the screen, flush to the bottom -->
   <div class="pointer-events-none absolute bottom-0 left-[10px] z-20 flex items-end gap-0">
-    <img src="Image-1.png" alt="Birthday memory" class="h-44 w-auto rounded-2xl object-cover md:h-64 lg:h-80 xl:h-[28rem]" style="margin-bottom: -15px;" />
-    <img src="Image-2.png" alt="Birthday memory" class="h-44 w-auto rounded-2xl object-cover md:h-64 lg:h-80 xl:h-[28rem]" />
+    <img src="Image-1.png" alt="Birthday memory" class="h-44 w-auto rounded-2xl object-cover md:h-64 lg:h-80 xl:h-[28rem]" style="margin-bottom: -15px;" (error)="onImgError($event)" />
+    <img src="Image-2.png" alt="Birthday memory" class="h-44 w-auto rounded-2xl object-cover md:h-64 lg:h-80 xl:h-[28rem]" (error)="onImgError($event)" />
   </div>
 
   <!-- Two photos on the right of the screen, flush to the bottom -->
   <div class="pointer-events-none absolute bottom-0 right-[10px] z-20 flex items-end gap-0">
-    <img src="Image-3.png" alt="Birthday memory" class="h-44 w-auto rounded-2xl object-cover md:h-64 lg:h-80 xl:h-[28rem]" />
-    <img src="Image-4.png" alt="Birthday memory" class="h-44 w-auto rounded-2xl object-cover md:h-64 lg:h-80 xl:h-[28rem]" />
+    <img src="Image-3.png" alt="Birthday memory" class="h-44 w-auto rounded-2xl object-cover md:h-64 lg:h-80 xl:h-[28rem]" (error)="onImgError($event)" />
+    <img src="Image-4.png" alt="Birthday memory" class="h-44 w-auto rounded-2xl object-cover md:h-64 lg:h-80 xl:h-[28rem]" (error)="onImgError($event)" />
   </div>
 </div>

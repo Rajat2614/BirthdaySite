@@ -31,6 +31,22 @@ interface Doodle {
   styleUrl: './timeline.css'
 })
 export class Timeline {
+  // Formats to try, in order, when a photo's file extension doesn't match.
+  // Lets you drop in .jpg, .jpeg, .png or .webp without editing the data below.
+  private readonly imgExts = ['jpg', 'jpeg', 'png', 'webp'];
+
+  // On a 404, retry the same base filename with the next supported extension.
+  onImgError(ev: Event): void {
+    const img = ev.target as HTMLImageElement;
+    const tried = Number(img.dataset['extIdx'] ?? 0) + 1;
+    if (tried >= this.imgExts.length) {
+      img.style.display = 'none'; // give up; the paper tint shows through
+      return;
+    }
+    img.dataset['extIdx'] = String(tried);
+    img.src = img.src.replace(/\.[^/.]+$/, '.' + this.imgExts[tried]);
+  }
+
   // Scattered, overlapping scrapbook of recent photos that blankets the screen.
   // Each frame gets its own soft interior-design paper tint so no two
   // neighbours feel the same.

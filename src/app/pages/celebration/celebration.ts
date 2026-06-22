@@ -54,7 +54,23 @@ export class Celebration implements OnInit, OnDestroy {
   private revealTimer?: ReturnType<typeof setTimeout>;
   private navigateTimer?: ReturnType<typeof setTimeout>;
 
+  // Formats to try, in order, when a photo's file extension doesn't match.
+  // Lets you drop in .jpg, .jpeg, .png or .webp without editing the markup.
+  private readonly imgExts = ['png', 'jpg', 'jpeg', 'webp'];
+
   constructor(private router: Router) {}
+
+  // On a 404, retry the same base filename with the next supported extension.
+  onImgError(ev: Event): void {
+    const img = ev.target as HTMLImageElement;
+    const tried = Number(img.dataset['extIdx'] ?? 0) + 1;
+    if (tried >= this.imgExts.length) {
+      img.style.display = 'none';
+      return;
+    }
+    img.dataset['extIdx'] = String(tried);
+    img.src = img.src.replace(/\.[^/.]+$/, '.' + this.imgExts[tried]);
+  }
 
   ngOnInit(): void {
     this.poppers = Array.from({ length: 80 }, () => this.createPopper());
