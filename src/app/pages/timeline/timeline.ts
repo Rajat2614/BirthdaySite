@@ -57,7 +57,7 @@ export class Timeline {
     { image: '/timeline/Image-3.jpg',    paper: '#e8ecdf', aspect: 'square',    left: 52, top: 2,  width: 21, rotate: -3, z: 3, tear: 3 },
     { image: '/timeline/Image-4.jpg', paper: '#f6e2d4', aspect: 'portrait',  left: 75, top: 0,  width: 22, rotate: 6,  z: 5, tear: 1 },
     // Row 2
-    { image: '/timeline/Image-5.jpg',    paper: '#e4ebef', aspect: 'landscape', left: 3,  top: 17, width: 25, rotate: 5,  z: 6, tear: 2 },
+    { image: '/timeline/Image-5.jpg',    paper: '#e4ebef', aspect: 'portrait', left: 3,  top: 17, width: 25, rotate: 5,  z: 6, tear: 2 },
     { image: '/timeline/Image-6.jpg',    paper: '#f3e4e3', aspect: 'square',    left: 30, top: 16, width: 21, rotate: -5, z: 7, tear: 3 },
     { image: '/timeline/Image-7.jpg',    paper: '#eee0d4', aspect: 'portrait',  left: 53, top: 17, width: 22, rotate: 4,  z: 6, tear: 1 },
     { image: '/timeline/Image-8.jpg', paper: '#eae9d6', aspect: 'landscape', left: 73, top: 18, width: 26, rotate: -4, z: 5, tear: 2 },
@@ -65,10 +65,10 @@ export class Timeline {
     { image: '/timeline/Image-9.jpg',    paper: '#ece7f0', aspect: 'portrait',    left: 2,  top: 33, width: 22, rotate: -4, z: 4, tear: 3 },
     { image: '/timeline/Image-10.jpg',    paper: '#e1ebe5', aspect: 'landscape', left: 26, top: 34, width: 26, rotate: 5,  z: 6, tear: 1 },
     { image: '/timeline/Image-11.jpg',    paper: '#f7e8db', aspect: 'square',  left: 55, top: 33, width: 22, rotate: -6, z: 7, tear: 2 },
-    { image: '/timeline/Image-12.jpg', paper: '#f5efe6', aspect: 'landscape',    left: 76, top: 34, width: 23, rotate: 4,  z: 8, tear: 3 },
+    { image: '/timeline/Image-12.jpg', paper: '#f5efe6', aspect: 'portrait',    left: 76, top: 34, width: 23, rotate: 4,  z: 8, tear: 3 },
     // Row 4
     { image: '/timeline/Image-13.jpg',    paper: '#f0e2cd', aspect: 'portrait',  left: 1,  top: 49, width: 23, rotate: -5, z: 3, tear: 1 },
-    { image: '/timeline/Image-14.jpg',    paper: '#e8ecdf', aspect: 'landscape', left: 27, top: 50, width: 26, rotate: 3,  z: 5, tear: 2 },
+    { image: '/timeline/Image-14.jpg',    paper: '#e8ecdf', aspect: 'portrait', left: 27, top: 50, width: 26, rotate: 3,  z: 5, tear: 2 },
     { image: '/timeline/Image-15.jpg',    paper: '#f3e4e3', aspect: 'square',    left: 52, top: 49, width: 21, rotate: -4, z: 4, tear: 3 },
     { image: '/timeline/Image-16.jpg', paper: '#e4ebef', aspect: 'portrait',  left: 74, top: 50, width: 22, rotate: 5,  z: 6, tear: 1 },
     // Row 5
