@@ -1,0 +1,89 @@
+<div class="relative min-h-screen w-full bg-room">
+
+  <!-- SVG torn-paper edge filters (hidden) -->
+  <svg class="absolute h-0 w-0" aria-hidden="true">
+    <defs>
+      <filter id="paper-tear-1">
+        <feTurbulence type="fractalNoise" baseFrequency="0.014 0.016" numOctaves="3" seed="4" result="n" />
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="13" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      <filter id="paper-tear-2">
+        <feTurbulence type="fractalNoise" baseFrequency="0.012 0.02" numOctaves="3" seed="19" result="n" />
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="15" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      <filter id="paper-tear-3">
+        <feTurbulence type="fractalNoise" baseFrequency="0.018 0.013" numOctaves="3" seed="31" result="n" />
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="12" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Sticky gallery title -->
+  <div class="pointer-events-none sticky top-4 z-40 flex justify-center text-center">
+    <div class="pointer-events-auto rounded-2xl bg-stone-100/85 px-7 py-3 shadow-xl ring-1 ring-stone-300/60 backdrop-blur">
+      <h1 class="mt-0.5 font-serif text-2xl font-medium tracking-tight text-stone-800 md:text-3xl">
+        Aaloo, lately.
+      </h1>
+    </div>
+  </div>
+
+  <!-- Scattered, overlapping scrapbook -->
+  <div class="collage">
+
+  <!-- Art & stationery doodles drifting behind the photos -->
+  <div class="doodle-layer" aria-hidden="true">
+    @for (d of doodles; track $index) {
+      <span
+        class="doodle"
+        [style.left.%]="d.left"
+        [style.top.%]="d.top"
+        [style.fontSize.rem]="d.size"
+        [style.--rot]="d.rotate + 'deg'"
+        [style.animationDelay.s]="d.delay">
+        {{ d.icon }}
+      </span>
+    }
+  </div>
+
+  @for (p of photos; track $index) {
+    <figure
+      class="photo"
+      [style.left.%]="p.left"
+      [style.top.%]="p.top"
+      [style.width.vw]="p.width"
+      [style.zIndex]="p.z"
+      [style.--rot]="p.rotate + 'deg'"
+      [style.--paper]="p.paper"
+      [style.animationDelay.ms]="$index * 60">
+
+      <div class="paper" [style.filter]="'url(#paper-tear-' + p.tear + ')'">
+        <div class="photo-mat"
+             [class.mat--portrait]="p.aspect === 'portrait'"
+             [class.mat--landscape]="p.aspect === 'landscape'"
+             [class.mat--square]="p.aspect === 'square'">
+          @if (p.image) {
+            <img [src]="p.image" alt="" class="photo-img" />
+          } @else {
+            <div class="photo-placeholder">
+              <span class="text-2xl">🖼️</span>
+              <span class="mt-1 text-[0.6rem] font-medium tracking-wide">Add photo</span>
+            </div>
+          }
+        </div>
+      </div>
+    </figure>
+  }
+  </div>
+
+  <!-- Navigation -->
+  <div class="relative z-40 flex items-center justify-center gap-3 pb-10 pt-4">
+    <a routerLink="/"
+       class="rounded-full bg-stone-100/85 px-6 py-3 font-serif text-sm uppercase tracking-[0.2em] text-stone-600 shadow-lg ring-1 ring-stone-300/60 backdrop-blur transition hover:text-stone-900">
+      &larr; Back
+    </a>
+    <a routerLink="/rsvp"
+       class="rounded-full bg-stone-800 px-8 py-3 font-serif text-sm uppercase tracking-[0.2em] text-stone-50 shadow-lg transition hover:scale-105 hover:bg-stone-900">
+      Your Gift &rarr;
+    </a>
+  </div>
+</div>

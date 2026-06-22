@@ -1,0 +1,127 @@
+:host {
+  display: block;
+}
+
+/* ===== Warm interior wall ===== */
+.bg-room {
+  background:
+    radial-gradient(70% 55% at 80% 6%, rgba(255, 250, 235, 0.7) 0%, rgba(255, 250, 235, 0) 60%),
+    linear-gradient(180deg, #efe7db 0%, #e7dccd 55%, #ddd0bd 100%);
+}
+
+/* ===== Collage canvas (scrolls) =====
+   Height is in vw so the scattered layout scales uniformly with the
+   photo widths/heights (also vw-based) at any screen size, keeping the
+   bottom-row captions fully visible. */
+.collage {
+  position: relative;
+  height: 200vw;
+  margin-top: -3.5rem; /* tuck the first row up under the sticky title */
+}
+
+@media (min-width: 1024px) {
+  .collage { height: 165vw; }
+}
+
+/* ===== Background art & stationery doodles ===== */
+.doodle-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0; /* sit behind the photos (z >= 2) */
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.doodle {
+  position: absolute;
+  line-height: 1;
+  opacity: 0.16;
+  filter: saturate(0.85) drop-shadow(0 4px 6px rgba(70, 50, 30, 0.12));
+  transform: rotate(var(--rot, 0deg));
+  animation: doodleFloat 9s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes doodleFloat {
+  0%, 100% { transform: rotate(var(--rot, 0deg)) translateY(0); }
+  50%      { transform: rotate(calc(var(--rot, 0deg) + 4deg)) translateY(-14px); }
+}
+
+/* ===== Scattered, overlapping scrapbook photo ===== */
+.photo {
+  position: absolute;
+  margin: 0;
+  transform: rotate(var(--rot, 0deg));
+  filter: drop-shadow(0 12px 14px rgba(70, 50, 30, 0.32));
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out forwards;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
+}
+
+.photo:hover {
+  transform: rotate(calc(var(--rot, 0deg) * 0.25)) scale(1.06);
+  filter: drop-shadow(0 20px 22px rgba(70, 50, 30, 0.42));
+  z-index: 30 !important;
+}
+
+/* ===== The torn paper sheet ===== */
+.paper {
+  /* filter: url(#paper-tear-N) is bound inline for the deckled edge */
+  padding: 9px;
+  /* --paper is bound inline so every frame gets its own soft tint */
+  background: var(--paper, #fbf7ef);
+}
+
+/* faint paper grain */
+.paper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(120, 100, 70, 0.04) 0 2px, transparent 2px 4px);
+  opacity: 0.5;
+}
+
+/* ===== Image area ===== */
+.photo-mat {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #fffdf8;
+  box-shadow: inset 0 0 0 1px rgba(120, 100, 70, 0.12);
+}
+.mat--portrait  { aspect-ratio: 3 / 4; }
+.mat--landscape { aspect-ratio: 4 / 3; }
+.mat--square    { aspect-ratio: 1 / 1; }
+
+.photo-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  /* height: 100%; */
+  object-fit: cover;
+}
+
+.photo-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #b3a385;
+  background:
+    repeating-linear-gradient(45deg, rgba(179, 163, 133, 0.08) 0 10px, transparent 10px 20px);
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo { animation: none; opacity: 1; }
+  .doodle { animation: none; }
+}

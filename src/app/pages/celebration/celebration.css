@@ -1,0 +1,174 @@
+:host {
+  display: block;
+}
+
+/* Falling confetti / party poppers */
+.popper {
+  position: absolute;
+  top: -5%;
+  display: block;
+  border-radius: 2px;
+  opacity: 0.9;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.popper--circle {
+  border-radius: 50%;
+}
+
+.popper--triangle {
+  background: transparent !important;
+  width: 0 !important;
+  height: 0 !important;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom-width: 12px;
+  border-bottom-style: solid;
+}
+
+/* Falling potatoes */
+.potato {
+  position: absolute;
+  top: -8%;
+  display: block;
+  line-height: 1;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(var(--rot, 0deg));
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(105vh) rotate(calc(var(--rot, 0deg) + 720deg));
+    opacity: 0.85;
+  }
+}
+
+/* Plane flying across the screen */
+.plane-track {
+  height: 0;
+}
+
+.plane-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  white-space: nowrap;
+  transform: translateX(-40vw);
+  animation: flyAcross 6s ease-in-out forwards;
+}
+
+.plane-img {
+  width: 150px;
+  height: auto;
+  filter: drop-shadow(0 12px 14px rgba(0, 0, 0, 0.35));
+}
+
+@media (min-width: 768px) {
+  .plane-img {
+    width: 200px;
+  }
+}
+
+.banner {
+  position: relative;
+  background: #ffffff;
+  color: #7c3aed;
+  font-weight: 800;
+  padding: 0.4rem 1.1rem;
+  border-radius: 9999px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  font-size: 1.1rem;
+}
+
+/* tow line connecting the banner to the plane's rear hook */
+.banner::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 1rem;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+@keyframes flyAcross {
+  0% {
+    transform: translateX(-45vw) translateY(0);
+  }
+  50% {
+    transform: translateX(40vw) translateY(-18px);
+  }
+  100% {
+    transform: translateX(135vw) translateY(0);
+  }
+}
+
+/* Centerpiece title entrance */
+.title-pop {
+  animation: titlePop 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes titlePop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Confetti pieces bursting out from inside the button */
+.burst-piece {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+  animation-name: burstOut;
+  animation-timing-function: cubic-bezier(0.15, 0.7, 0.3, 1);
+  animation-fill-mode: both;
+}
+
+@keyframes burstOut {
+  0% {
+    transform: translate(-50%, -50%) scale(0.3) rotate(0deg);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.2) rotate(var(--rot, 0deg));
+    opacity: 0;
+  }
+}
+
+/* Button drop-in (as if released from the plane) */
+.drop-in {
+  animation: dropIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes dropIn {
+  0% {
+    transform: translateY(-320px) rotate(-12deg);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(12px) rotate(2deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) rotate(0);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,106 @@
+<div class="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500">
+
+  <!-- Falling celebration items: confetti or potatoes -->
+  <div class="pointer-events-none absolute inset-0 z-10">
+    @if (mode === 'confetti') {
+      @for (p of poppers; track $index) {
+        <span
+          class="popper"
+          [class.popper--circle]="p.shape === 'circle'"
+          [class.popper--triangle]="p.shape === 'triangle'"
+          [style.left.%]="p.left"
+          [style.width.px]="p.size"
+          [style.height.px]="p.size"
+          [style.background]="p.shape === 'triangle' ? 'transparent' : p.color"
+          [style.borderBottomColor]="p.color"
+          [style.animationDelay.s]="p.delay"
+          [style.animationDuration.s]="p.duration"
+          [style.--rot]="p.rotate + 'deg'">
+        </span>
+      }
+    } @else {
+      @for (t of potatoes; track $index) {
+        <span
+          class="potato"
+          [style.left.%]="t.left"
+          [style.fontSize.px]="t.size"
+          [style.animationDelay.s]="t.delay"
+          [style.animationDuration.s]="t.duration"
+          [style.--rot]="t.rotate + 'deg'">
+          🥔
+        </span>
+      }
+    }
+  </div>
+
+  <!-- Mode toggle -->
+  <button
+    type="button"
+    (click)="toggleMode()"
+    class="absolute right-4 top-4 z-30 rounded-full bg-white/20 px-5 py-2 text-sm font-bold text-white shadow-lg ring-1 ring-white/40 backdrop-blur transition hover:bg-white/30">
+    {{ mode === 'confetti' ? 'Switch to 🥔 Potatoes' : 'Switch to 🎉 Confetti' }}
+  </button>
+
+  <!-- Plane flying across, dropping a banner -->
+  <div class="plane-track pointer-events-none absolute left-0 top-24 z-20 w-full">
+    <div class="plane-wrap">
+      <div class="banner">Happy 21st!</div>
+      <img src="plane.png" alt="Airplane towing a birthday banner" class="plane-img" />
+    </div>
+  </div>
+
+  <!-- Centerpiece message -->
+  <div class="relative z-20 flex min-h-screen flex-col items-center justify-center px-6 text-center">
+    <p class="mb-1 text-base font-semibold uppercase tracking-[0.1em] text-white/80 md:text-lg">
+      Cheers to
+    </p>
+    <h1 class="title-pop text-5xl font-extrabold leading-tight text-white drop-shadow-xl md:text-6xl lg:text-8xl">
+      Happy 21<sup class="text-2xl md:text-3xl lg:text-5xl">st</sup><br />Birthday!
+    </h1>
+    <p class="mt-6 max-w-md text-lg font-medium text-white/90 md:max-w-xl md:text-xl lg:text-2xl">
+      Aaloo &mdash; today the adventure levels up. Let's celebrate you! 🎉
+    </p>
+
+    <!-- Button "dropped" by the plane -->
+    @if (showButton) {
+      <div class="relative mt-12 flex items-center justify-center">
+        <!-- Confetti bursts out from inside the button on click -->
+        @if (celebrating) {
+          <div class="pointer-events-none absolute inset-0 z-0">
+            @for (b of burst; track $index) {
+              <span
+                class="burst-piece"
+                [style.width.px]="b.size"
+                [style.height.px]="b.size"
+                [style.background]="b.color"
+                [style.animationDuration.s]="b.duration"
+                [style.--tx]="b.tx + 'px'"
+                [style.--ty]="b.ty + 'px'"
+                [style.--rot]="b.rotate + 'deg'">
+              </span>
+            }
+          </div>
+        }
+        <button
+          type="button"
+          (click)="continue()"
+          [disabled]="celebrating"
+          class="drop-in relative z-10 rounded-full bg-white px-10 py-4 text-lg font-bold text-purple-700 shadow-2xl transition hover:scale-105 hover:bg-yellow-300 hover:text-purple-900 disabled:cursor-default">
+          Let's goooooo &rarr;
+        </button>
+      </div>
+    }
+  </div>
+
+  <!-- Two photos on the left of the screen, flush to the bottom -->
+  <div class="pointer-events-none absolute bottom-0 left-[10px] z-20 flex items-end gap-0">
+    <img src="Image-1.png" alt="Birthday memory" class="h-44 w-auto rounded-2xl object-cover md:h-64 lg:h-80 xl:h-[28rem]" style="margin-bottom: -15px;" />
+    <img src="Image-2.png" alt="Birthday memory" class="h-44 w-auto rounded-2xl object-cover md:h-64 lg:h-80 xl:h-[28rem]" />
+  </div>
+
+  <!-- Two photos on the right of the screen, flush to the bottom -->
+  <div class="pointer-events-none absolute bottom-0 right-[10px] z-20 flex items-end gap-0">
+    <img src="Image-3.png" alt="Birthday memory" class="h-44 w-auto rounded-2xl object-cover md:h-64 lg:h-80 xl:h-[28rem]" />
+    <img src="Image-4.png" alt="Birthday memory" class="h-44 w-auto rounded-2xl object-cover md:h-64 lg:h-80 xl:h-[28rem]" />
+  </div>
+</div>

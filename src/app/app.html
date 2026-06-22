@@ -1,0 +1,17 @@
+<router-outlet></router-outlet>
+
+@if (isSmallScreen() && !dismissed()) {
+  <div class="screen-gate">
+    <div class="screen-gate__card">
+      <div class="screen-gate__emoji">💻📱</div>
+      <h2 class="screen-gate__title">Best viewed on a bigger screen</h2>
+      <p class="screen-gate__text">
+        This little surprise was made with love for an <strong>iPad</strong> or
+        <strong>laptop</strong>. Pop it open on a larger screen for the full experience! ✨
+      </p>
+      <button type="button" class="screen-gate__btn" (click)="continueAnyway()">
+        Continue on phone anyway
+      </button>
+    </div>
+  </div>
+}
