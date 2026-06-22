@@ -96,7 +96,7 @@ export class Timeline {
     '🖊️'
   ];
   
-  doodles: Doodle[] = Array.from({ length: 75 }, () => ({
+  doodles: Doodle[] = Array.from({ length: 100 }, () => ({
     icon: this.artIcons[Math.floor(Math.random() * this.artIcons.length)],
     left: Math.random() * 96 + 2,
     top: Math.random() * 85 + 5,
