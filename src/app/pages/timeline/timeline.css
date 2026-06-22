@@ -35,7 +35,7 @@
 .doodle {
   position: absolute;
   line-height: 1;
-  opacity: 0.16;
+  opacity: 0.46;
   filter: saturate(0.85) drop-shadow(0 4px 6px rgba(70, 50, 30, 0.12));
   transform: rotate(var(--rot, 0deg));
   animation: doodleFloat 9s ease-in-out infinite;

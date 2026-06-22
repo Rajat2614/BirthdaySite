@@ -85,41 +85,23 @@ export class Timeline {
   ];
 
   // Art & stationery doodles drifting in the background behind the photos.
-  doodles: Doodle[] = [
-    // gap between row 1 & 2
-    { icon: '🎨', left: 14, top: 12, size: 3.2, rotate: -12, delay: 0 },
-    { icon: '✏️', left: 42, top: 11, size: 2.6, rotate: 28, delay: 1.1 },
-    { icon: '📏', left: 68, top: 13, size: 3.0, rotate: -18, delay: 2.0 },
-    { icon: '🖌️', left: 90, top: 12, size: 2.8, rotate: 16, delay: 0.6 },
-  
-    // gap between row 2 & 3
-    { icon: '📐', left: 8, top: 30, size: 3.1, rotate: -24, delay: 1.7 },
-    { icon: '🖍️', left: 32, top: 29, size: 2.5, rotate: 20, delay: 2.6 },
-    { icon: '✂️', left: 58, top: 31, size: 2.7, rotate: -14, delay: 0.3 },
-    { icon: '🖊️', left: 84, top: 30, size: 2.4, rotate: 30, delay: 1.4 },
-  
-    // gap between row 3 & 4
-    { icon: '🎨', left: 18, top: 46, size: 3.0, rotate: 12, delay: 2.2 },
-    { icon: '📏', left: 46, top: 45, size: 2.9, rotate: 22, delay: 0.9 },
-    { icon: '🖌️', left: 72, top: 47, size: 2.8, rotate: -20, delay: 1.9 },
-    { icon: '✏️', left: 92, top: 46, size: 2.6, rotate: -10, delay: 2.8 },
-  
-    // gap between row 4 & 5
-    { icon: '🖍️', left: 12, top: 62, size: 2.7, rotate: 18, delay: 0.5 },
-    { icon: '📐', left: 38, top: 61, size: 3.1, rotate: 14, delay: 1.6 },
-    { icon: '🎨', left: 64, top: 63, size: 2.9, rotate: -16, delay: 2.4 },
-    { icon: '🖊️', left: 88, top: 62, size: 2.5, rotate: 26, delay: 0.8 },
-  
-    // gap between row 5 & 6
-    { icon: '✂️', left: 8, top: 78, size: 2.7, rotate: -22, delay: 1.8 },
-    { icon: '📏', left: 30, top: 77, size: 3.0, rotate: 12, delay: 2.7 },
-    { icon: '✏️', left: 56, top: 79, size: 2.6, rotate: -28, delay: 0.4 },
-    { icon: '🖌️', left: 82, top: 78, size: 2.8, rotate: 20, delay: 1.5 },
-  
-    // bottom area
-    { icon: '🖍️', left: 18, top: 96, size: 2.7, rotate: -14, delay: 2.3 },
-    { icon: '🎨', left: 48, top: 95, size: 3.1, rotate: 16, delay: 0.7 },
-    { icon: '📐', left: 74, top: 96, size: 2.9, rotate: -18, delay: 1.3 },
-    { icon: '🖊️', left: 92, top: 95, size: 2.5, rotate: 24, delay: 2.5 }
+  private readonly artIcons = [
+    '🎨',
+    '✏️',
+    '📏',
+    '🖌️',
+    '📐',
+    '🖍️',
+    '✂️',
+    '🖊️'
   ];
+  
+  doodles: Doodle[] = Array.from({ length: 75 }, () => ({
+    icon: this.artIcons[Math.floor(Math.random() * this.artIcons.length)],
+    left: Math.random() * 96 + 2,
+    top: Math.random() * 85 + 5,
+    size: 2.5 + Math.random() * 2.5,
+    rotate: -45 + Math.random() * 90,
+    delay: Math.random() * 5
+  }));
 }
