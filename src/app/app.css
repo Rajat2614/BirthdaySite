@@ -11,7 +11,7 @@
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
-  background: linear-gradient(135deg, #6d28d9, #db2777);
+  background: #F4C2C2;
   animation: gateFade 0.4s ease-out both;
 }
 
