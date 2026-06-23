@@ -103,8 +103,8 @@ export class Rsvp implements OnInit {
       text: 'Okay then... what do you want?',
       sub: 'Pick your weapon, big spender 💸',
       buttons: [
-        { label: 'iPhone 17 Pro Max 📱', next: 'funding', style: 'primary' },
-        { label: 'AirPods 3 Pro 🎧', next: 'funding', style: 'primary' }
+        { label: 'Apple 11 iPad Pro📱', next: 'funding', style: 'primary' },
+        { label: 'AirPods Pro (3rd Gen) 🎧', next: 'funding', style: 'primary' }
       ]
     },
     love: {
